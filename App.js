@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   StyleSheet,
   View,
@@ -9,34 +9,50 @@ import {
   SafeAreaView,
   TouchableOpacity,
   Text,
+  FlatList,
 } from 'react-native';
 
 export default function App() {
+  //Adding identication
+  const [level, setLevel] = useState(0);
+
+  //Different levels of sign up
   const logAsLevelOne = () => {
-    Alert.alert('This is level one');
+    setLevel(1);
   };
 
   const logAsLevelTwo = () => {
-    Alert.alert('This is level two');
+    setLevel(2);
   };
 
   const logAsLevelThree = () => {
-    Alert.alert('This is level three');
+    setLevel(3);
   };
+
+  const logAsLevelFour = () => {
+    setLevel(4);
+  };
+
+  useEffect(()=>{
+  });
 
   return (
     <SafeAreaView style={styles.safeArea}>
       <View style={styles.container}>
         <TouchableOpacity onPress={logAsLevelOne} style={styles.btn}>
-            <Text style={styles.btnText}>Lvl One</Text>
+          <Text style={styles.btnText}>Lvl One</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={logAsLevelTwo} style={styles.btn}>
-            <Text style={styles.btnText}>Lvl Two</Text>
+          <Text style={styles.btnText}>Lvl Two</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={logAsLevelThree} style={styles.btn}>
-            <Text style={styles.btnText}>Lvl Three</Text>
+          <Text style={styles.btnText}>Lvl Three</Text>
         </TouchableOpacity>
-      </View>
+        <TouchableOpacity onPress={logAsLevelFour} style={styles.btn}>
+          <Text style={styles.btnText}>Lvl Four</Text>
+        </TouchableOpacity>
+          <Text style={styles.levelText}>Selected Level: {level}</Text>
+ </View>
     </SafeAreaView>
   );
 }
@@ -59,9 +75,9 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     justifyContent: 'center',
     alignItems: 'center',
-    margin: 5
+    margin: 5,
   },
   btnText: {
-    color: "white",
-  }
+    color: 'white',
+  },
 });
