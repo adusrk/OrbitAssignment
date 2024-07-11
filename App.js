@@ -1,83 +1,21 @@
 /* eslint-disable prettier/prettier */
-import React, {useEffect, useState} from 'react';
-import {
-  StyleSheet,
-  View,
-  TextInput,
-  Button,
-  Alert,
-  SafeAreaView,
-  TouchableOpacity,
-  Text,
-  FlatList,
-} from 'react-native';
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import HomeScreen from './Pages/HomeScreen';
+import SearchScreen from './Pages/SearchScreen';
 
-export default function App() {
-  //Adding identication
-  const [level, setLevel] = useState(0);
+const Stack = createStackNavigator();
 
-  //Different levels of sign up
-  const logAsLevelOne = () => {
-    setLevel(1);
-  };
-
-  const logAsLevelTwo = () => {
-    setLevel(2);
-  };
-
-  const logAsLevelThree = () => {
-    setLevel(3);
-  };
-
-  const logAsLevelFour = () => {
-    setLevel(4);
-  };
-
-  useEffect(()=>{
-  });
-
+const App = () => {
   return (
-    <SafeAreaView style={styles.safeArea}>
-      <View style={styles.container}>
-        <TouchableOpacity onPress={logAsLevelOne} style={styles.btn}>
-          <Text style={styles.btnText}>Lvl One</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={logAsLevelTwo} style={styles.btn}>
-          <Text style={styles.btnText}>Lvl Two</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={logAsLevelThree} style={styles.btn}>
-          <Text style={styles.btnText}>Lvl Three</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={logAsLevelFour} style={styles.btn}>
-          <Text style={styles.btnText}>Lvl Four</Text>
-        </TouchableOpacity>
-          <Text style={styles.levelText}>Selected Level: {level}</Text>
- </View>
-    </SafeAreaView>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="App">
+        <Stack.Screen name="Home" component={HomeScreen} options={{ headerShown: false }} />
+        <Stack.Screen name="Search" component={SearchScreen} options={{ headerShown: false }}/>
+      </Stack.Navigator>
+    </NavigationContainer>
   );
-}
+};
 
-const styles = StyleSheet.create({
-  safeArea: {
-    flex: 1, // Ensures that SafeAreaView takes up the whole screen
-  },
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: 20,
-    // backgroundColor: "grey"
-  },
-  btn: {
-    height: '5%',
-    width: '80%',
-    backgroundColor: 'tomato',
-    borderRadius: 10,
-    justifyContent: 'center',
-    alignItems: 'center',
-    margin: 5,
-  },
-  btnText: {
-    color: 'white',
-  },
-});
+export default App;
